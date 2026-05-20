@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fly Dream Air</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #eef6ff;
+      color: #1d2b4f;
+    }
+
+    .login-page,
+    .main-page {
+      width: 70%;
+      margin: 60px auto;
+    }
+
+    h1 {
+      font-size: 52px;
+      color: #2446a3;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #2446a3;
+      margin-bottom: 20px;
+    }
+
+    .box {
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 16px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cccccc;
+      border-radius: 20px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      border: none;
+      border-radius: 20px;
+      background-color: #1d2b4f;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2446a3;
+    }
+
+    .menu {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .menu button {
+      width: auto;
+      padding: 10px 18px;
+      margin-right: 8px;
+      margin-top: 8px;
+      background-color: white;
+      color: #2446a3;
+      border: 1px solid #b9c8f5;
+    }
+
+    .menu button:hover {
+      background-color: #2446a3;
+      color: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      background-color: #f7fbff;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid #d5e4ff;
+    }
+
+    .number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2446a3;
+    }
+
+
+    .partner-logo {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background-color: #2446a3;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .partner-type {
+      color: #2446a3;
+      font-weight: bold;
+      margin-top: 8px;
+      margin-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #dddddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #2446a3;
+      color: white;
+    }
+
+
+
+    .partner-logo-card {
+      text-align: center;
+      min-height: 210px;
+    }
+
+    .partner-logo-card a {
+      display: block;
+      text-decoration: none;
+      color: #1d2b4f;
+    }
+
+    .partner-logo-card img {
+      width: 120px;
+      height: 80px;
+      object-fit: contain;
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid #d5e4ff;
+      margin-bottom: 10px;
+    }
+
+    .partner-logo-card img:hover {
+      transform: scale(1.05);
+    }
+
+    .logo-fallback {
+      width: 120px;
+      height: 80px;
+      background-color: #2446a3;
+      color: white;
+      border-radius: 12px;
+      border: 1px solid #d5e4ff;
+      margin: 0 auto 10px auto;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .partner-type {
+      color: #2446a3;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 800px) {
+      .login-page,
+      .main-page {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loginPage" class="login-page">
+    <h1>Fly Dream Air</h1>
+
+    <div class="box">
+      <h2>Login</h2>
+
+      <label>Email</label>
+      <input type="email" id="email" placeholder="Enter email">
+
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter password">
+
+      <button onclick="login()">LOGIN</button>
+    </div>
+  </div>
+
+  <div id="mainPage" class="main-page hidden">
+    <h1>Fly Dream Air</h1>
+
+    <div class="menu">
+      <button onclick="showPage('flight')">Flight Search</button>
+      <button onclick="showPage('member')">Member</button>
+      <button onclick="showPage('points')">Points</button>
+      <button onclick="showPage('redeem')">Redeem</button>
+      <button onclick="showPage('partners')">Partners</button>
+      <button onclick="showPage('admin')">Admin</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <div id="flight" class="page box">
+      <h2>Flight Search</h2>
+      <div class="grid">
+        <div>
+          <label>From</label>
+          <select>
+            <option>Sydney (SYD)</option>
+            <option>Melbourne (MEL)</option>
+            <option>Brisbane (BNE)</option>
+            <option>Pudong (PVG)</option>
+            <option>Shanghai (SHA)</option>
+            <option>Beijing (PEK)</option>
+          </select>
+        </div>
+
+        <div>
+          <label>To</label>
+          <select>
+            <option>Melbourne (MEL)</option>
+            <option>Sydney (SYD)</option>
+            <option>Perth (PER)</option>
+            <option>Pudong (PVG)</option>
+            <option>Shanghai (SHA)</option>
+            <option>Beijing (PEK)</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Date</label>
+          <input type="date">
+        </div>
+
+        <div>
+          <label>Seat</label>
+          <select>
+            <option>Economy</option>
+            <option>Business</option>
+            <option>First Class</option>
+          </select>
+        </div>
+      </div>
+      <button onclick="alert('Search completed')">SEARCH FLIGHT</button>
+    </div>
+
+    <div id="member" class="page box hidden">
+      <h2>Member Management</h2>
+      <div class="grid">
+        <div>
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter name">
+        </div>
+
+        <div>
+          <label>Email</label>
+          <input type="email" placeholder="Enter email">
+        </div>
+
+        <div>
+          <label>Phone</label>
+          <input type="text" placeholder="Enter phone number">
+        </div>
+
+        <div>
+          <label>Membership Tier</label>
+          <select>
+            <option>Green</option>
+            <option>Silver</option>
+            <option>Gold</option>
+            <option>Diamond</option>
+          </select>
+        </div>
+      </div>
+      <button onclick="alert('Member saved')">SAVE MEMBER</button>
+    </div>
+
+    <div id="points" class="page box hidden">
+      <h2>Points Inquiry</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Miles</h3>
+          <p class="number">86,500</p>
+        </div>
+
+        <div class="card">
+          <h3>Status Credits</h3>
+          <p class="number">620</p>
+        </div>
+
+        <div class="card">
+          <h3>Tier</h3>
+          <p class="number">Gold</p>
+        </div>
+      </div>
+
+      <h2 style="margin-top:25px;">History</h2>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Activity</th>
+          <th>Miles</th>
+        </tr>
+        <tr>
+          <td>2026/04/01</td>
+          <td>Flight Redemption</td>
+          <td>-18,000</td>
+        </tr>
+        <tr>
+          <td>2026/04/10</td>
+          <td>Birthday Bonus</td>
+          <td>+2,000</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="redeem" class="page box hidden">
+      <h2>Redeem Points</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Flight</h3>
+          <p>18,000 Miles</p>
+          <button onclick="alert('Flight redeemed')">Redeem</button>
+        </div>
+
+        <div class="card">
+          <h3>Seat Upgrade</h3>
+          <p>25,000 Miles</p>
+          <button onclick="alert('Seat upgrade redeemed')">Redeem</button>
+        </div>
+
+        <div class="card">
+          <h3>Gift</h3>
+          <p>10,000 Miles</p>
+          <button onclick="alert('Gift redeemed')">Redeem</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="partners" class="page box hidden">
+      <h2>Partners</h2>
+      <p>Click a partner logo to visit the official company website.</p>
+
+      <div class="cards">
+        <div class="card partner-logo-card">
+          <a href="https://www.qantas.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?domain=qantas.com&sz=128" alt="Qantas logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback">Q</div>
+            <h3>Qantas</h3>
+          </a>
+          <p class="partner-type">Airline Partner</p>
+          <p>Members can earn bonus miles through selected flight activities.</p>
+        </div>
+
+        <div class="card partner-logo-card">
+          <a href="https://www.singaporeair.com/en-au/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?domain=singaporeair.com&sz=128" alt="Singapore Airlines logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback">S</div>
+            <h3>Singapore Airlines</h3>
+          </a>
+          <p class="partner-type">Airline Partner</p>
+          <p>Members can connect with international travel reward options.</p>
+        </div>
+
+        <div class="card partner-logo-card">
+          <a href="https://www.marriott.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?domain=marriott.com&sz=128" alt="Marriott logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback">M</div>
+            <h3>Marriott Bonvoy</h3>
+          </a>
+          <p class="partner-type">Hotel Partner</p>
+          <p>Members can earn miles when booking selected hotels.</p>
+        </div>
+
+        <div class="card partner-logo-card">
+          <a href="https://www.hertz.com.au/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?domain=hertz.com&sz=128" alt="Hertz logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback">H</div>
+            <h3>Hertz</h3>
+          </a>
+          <p class="partner-type">Car Rental Partner</p>
+          <p>Members can earn extra miles when renting cars for travel.</p>
+        </div>
+
+        <div class="card partner-logo-card">
+          <a href="https://www.hilton.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?domain=hilton.com&sz=128" alt="Hilton logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback">H</div>
+            <h3>Hilton</h3>
+          </a>
+          <p class="partner-type">Hotel Partner</p>
+          <p>Members can use hotel stays to support reward travel.</p>
+        </div>
+
+        <div class="card partner-logo-card">
+          <a href="https://www.booking.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?domain=booking.com&sz=128" alt="Booking.com logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback">B</div>
+            <h3>Booking.com</h3>
+          </a>
+          <p class="partner-type">Travel Booking Partner</p>
+          <p>Members can discover hotels and travel services online.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="admin" class="page box hidden">
+      <h2>Admin Dashboard</h2>
+      <div class="grid">
+        <div>
+          <label>Member ID</label>
+          <input type="text" placeholder="FD1001">
+        </div>
+
+        <div>
+          <label>Points Adjustment</label>
+          <input type="number" placeholder="Enter points">
+        </div>
+
+        <div>
+          <label>Campaign</label>
+          <select>
+            <option>Birthday Bonus</option>
+            <option>Double Miles</option>
+            <option>Expiry Reminder</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Action</label>
+          <select>
+            <option>Add Miles</option>
+            <option>Deduct Miles</option>
+            <option>Add Status Credits</option>
+          </select>
+        </div>
+      </div>
+      <button onclick="alert('Admin setting saved')">SAVE</button>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      if (email == '' || password == '') {
+        alert('Please enter email and password');
+      } else {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('mainPage').classList.remove('hidden');
+      }
+    }
+
+    function logout() {
+      document.getElementById('mainPage').classList.add('hidden');
+      document.getElementById('loginPage').classList.remove('hidden');
+    }
+
+    function showPage(pageName) {
+      var pages = document.getElementsByClassName('page');
+
+      for (var i = 0; i < pages.length; i++) {
+        pages[i].classList.add('hidden');
+      }
+
+      document.getElementById(pageName).classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
